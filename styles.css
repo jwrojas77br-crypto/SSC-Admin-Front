@@ -157,3 +157,28 @@ button:active {
 #list li:last-child {
 	border-bottom: none;
 }
+
+@media (max-width: 600px) {
+  body {
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    padding:
+      max(28px, env(safe-area-inset-top))
+      20px
+      max(24px, env(safe-area-inset-bottom));
+
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+}
