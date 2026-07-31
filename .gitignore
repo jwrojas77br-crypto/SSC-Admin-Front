@@ -1,0 +1,22 @@
+# Variables y secretos locales
+.env
+.env.*
+!.env.example
+
+# Registros
+*.log
+
+# Configuración local de editores
+.vscode/
+.idea/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Dependencias futuras
+node_modules/
+
+# Archivos temporales
+*.tmp
+*.temp

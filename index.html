@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06b6d4">
+  <meta name="description" content="Administración del Sistema del Servicio del Campo">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SSC-Admin">
+  <title>SSC-Admin</title>
+  <link rel="icon" type="image/png" href="./icons/icon.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="Login/login.css">
+  <link rel="stylesheet" href="Authenticator/authenticator.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-icon">
+        <img src="./icons/icon.png" alt="SSC-Admin">
+      </div>
+      <h1>SSC-Admin</h1>
+      <p class="hero-subtitle">Sistema del servicio del campo</p>
+    </div>
+
+    <form class="login-form" id="loginForm">
+      <label for="email">Correo electrónico</label>
+      <input id="email" type="email" autocomplete="email" placeholder="ejemplo@correo.com" required>
+      <p class="validation-message" id="emailValidation"></p>
+
+      <fieldset class="auth-method" id="authMethod">
+
+        <legend>Método de acceso</legend>
+
+        <label class="auth-method-option">
+          <input type="radio" name="authMethod" value="email" checked>
+
+          <span>
+            <strong>Código por correo</strong>
+            <small>Recibir un código temporal</small>
+          </span>
+        </label>
+
+        <label class="auth-method-option">
+          <input type="radio" name="authMethod" value="totp">
+
+          <span>
+            <strong>Google Authenticator</strong>
+            <small>Usar el código de la aplicación</small>
+          </span>
+        </label>
+      </fieldset>
+
+      <div id="codeStep" class="code-step" hidden>
+        <label for="accessCode">Código de acceso</label>
+        <input id="accessCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6"
+          pattern="[0-9]{6}" placeholder="000000">
+      </div>
+
+      <p class="validation-message" id="loginMessage" role="status" aria-live="polite"></p>
+      <p class="hint" id="loginHint">Te enviaremos un código de acceso a tu correo</p>
+      <button type="submit" class="login-button" id="loginButton" disabled>
+        <span id="loginButtonText">Enviar código</span> <span aria-hidden="true">→</span>
+      </button>
+      <button type="button" class="text-button" id="changeEmailButton" hidden>Cambiar correo</button>
+    </form>
+
+    <section class="authenticator-panel" id="authenticatorPanel" hidden>
+
+      <h2>Google Authenticator</h2>
+
+      <p id="authenticatorStatus">
+        Configura una segunda opción de acceso.
+      </p>
+
+      <button type="button" id="startAuthenticatorButton">
+        Configurar Authenticator
+      </button>
+
+      <div id="authenticatorSetup" hidden>
+
+        <div id="authenticatorQr" aria-label="Código QR de configuración">
+        </div>
+
+        <p>
+          Clave manual:
+          <code id="authenticatorSecret"></code>
+        </p>
+
+        <label for="authenticatorCode">
+          Código de confirmación
+        </label>
+
+        <input id="authenticatorCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6"
+          pattern="[0-9]{6}" placeholder="000000">
+
+        <p id="authenticatorMessage" role="status" aria-live="polite">
+        </p>
+
+        <button type="button" id="confirmAuthenticatorButton" disabled>
+          Confirmar Authenticator
+        </button>
+      </div>
+    </section>
+
+    <p class="footer-link">Contactar al administrador del sistema</p>
+  </div>
+  <script src="app.js"></script>
+  <script src="Vendor/qrcode.min.js">
+  </script>
+
+  <script type="module" src="Login/login.controller.js">
+  </script>
+  <script src="Vendor/qrcode.min.js">
+  </script>
+  <script type="module" src="Login/login.controller.js">
+  </script>
+</body>
+
+</html>
