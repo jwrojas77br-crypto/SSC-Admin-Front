@@ -1,5 +1,5 @@
 // Producción: versión de caché fija para probar actualizaciones
-const CACHE = "ssc-admin-v39";
+const CACHE = "ssc-admin-v40";
 
 self.addEventListener("install", e => {
 	// Permite que el SW nuevo tome control sin esperar al viejo
