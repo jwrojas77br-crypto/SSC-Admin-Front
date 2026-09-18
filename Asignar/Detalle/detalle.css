@@ -1,0 +1,299 @@
+/* Base visual de esta página independiente. */
+body {
+    margin: 0;
+    background: #101622;
+}
+
+.ssc-detalle,
+.ssc-detalle * {
+    box-sizing: border-box;
+}
+
+.ssc-detalle {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    color: #f1f5f9;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Conserva el encabezado visible al recorrer las tarjetas. */
+.ssc-detalle__header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #1e293b;
+    background: rgb(16 22 34 / 95%);
+    backdrop-filter: blur(12px);
+}
+
+.ssc-detalle__header-content {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    align-items: center;
+    gap: 8px;
+    max-width: 448px;
+    margin-inline: auto;
+    padding: 12px 16px;
+}
+
+.ssc-detalle__title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.ssc-detalle__back {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.ssc-detalle__back:hover {
+    background: #1e293b;
+}
+
+.ssc-detalle__back:focus-visible {
+    outline: 3px solid #f1f5f9;
+    outline-offset: 2px;
+}
+
+/* Limita el ancho y separa las secciones del detalle. */
+.ssc-detalle__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 448px;
+    margin-inline: auto;
+    padding: 24px 16px;
+}
+
+.ssc-detalle__content>section,
+.ssc-detalle__conductor {
+    margin-bottom: 32px;
+}
+
+.ssc-detalle__notice {
+    margin: 0 0 24px;
+    color: #94a3b8;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Centra el spinner en todo el espacio disponible del detalle. */
+.ssc-detalle__notice:not(:empty):has(.ssc-spinner) {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.ssc-detalle__section-title,
+.ssc-detalle__conductor label {
+    margin: 0 0 12px;
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Alinea el icono de persona con la etiqueta del selector. */
+.ssc-detalle__conductor label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ssc-detalle__conductor select {
+    width: 100%;
+    min-height: 56px;
+    padding: 12px 16px;
+    border: 1px solid #1e293b;
+    border-radius: 24px;
+    background: #0f172a;
+    color: #f1f5f9;
+    color-scheme: dark;
+    font: inherit;
+}
+
+#detalleTerritorio {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.ssc-detalle__cards {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Mantiene la acción inferior visible y reserva su espacio en la página. */
+.ssc-detalle__footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    padding: 16px 16px max(24px, env(safe-area-inset-bottom));
+    border-top: 1px solid #1e293b;
+    background: rgb(16 22 34 / 95%);
+}
+
+.ssc-detalle__assign {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 416px;
+    min-height: 56px;
+    margin-inline: auto;
+    border: 0;
+    border-radius: 24px;
+    background: #135bec;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+}
+
+/* Indica que los controles aún no están disponibles en esta maqueta. */
+.ssc-detalle select:disabled,
+.ssc-detalle button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+/* Distribuye la información y la casilla dentro de cada tarjeta. */
+.ssc-detalle__card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid #1e293b;
+    border-radius: 24px;
+    background: #0f172a;
+    cursor: pointer;
+}
+
+.ssc-detalle__card-info {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.ssc-detalle__card-title {
+    display: block;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.ssc-detalle__card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 6px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.ssc-detalle__checkbox {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    accent-color: #135bec;
+    color-scheme: dark;
+    cursor: pointer;
+}
+
+/* Destaca la tarjeta seleccionada sin necesitar JavaScript. */
+.ssc-detalle__card:has(input:checked) {
+    border-color: #135bec;
+    background: #142344;
+}
+
+/* Hace visible el foco al recorrer las tarjetas con el teclado. */
+.ssc-detalle__card:focus-within {
+    outline: 2px solid #135bec;
+    outline-offset: 3px;
+}
+
+/* Alinea el mapa y el nombre sin comprimir el icono en pantallas pequeñas. */
+.ssc-detalle__territory {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ssc-detalle__territory-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    background: rgb(19 91 236 / 10%);
+    color: #135bec;
+}
+
+.ssc-detalle__territory>h2 {
+    min-width: 0;
+}
+
+/* Mantiene cada icono alineado con su descripción. */
+.ssc-detalle__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Evita que los iconos se compriman cuando la tarjeta tiene poco espacio. */
+.ssc-detalle__meta-item svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* Tamaños de los iconos del selector y de la acción inferior. */
+.ssc-detalle__label-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: #135bec;
+}
+
+.ssc-detalle__assign-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* Evita reservar espacio cuando el detalle cargó sin avisos. */
+#detalleStatus:empty {
+    display: none;
+}
+
+/* Señala que la acción ya puede utilizarse. */
+.ssc-detalle__assign:not(:disabled) {
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgb(19 91 236 / 25%);
+}
+
+.ssc-detalle__assign:not(:disabled):hover {
+    filter: brightness(1.08);
+}
+
+.ssc-detalle__assign:not(:disabled):active {
+    transform: scale(0.98);
+}

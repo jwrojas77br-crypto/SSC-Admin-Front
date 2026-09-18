@@ -1,0 +1,166 @@
+/* Spinner reutilizable (orbita SVG + texto). Ver Shared/spinner.js para el marcado. */
+
+.ssc-spinner {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 28px;
+	text-align: center;
+	padding: 24px;
+	color: #f1f5f9;
+	font-family: "Segoe UI", sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	--muted: #94a3b8;
+}
+
+.ssc-spinner * {
+	box-sizing: border-box;
+}
+
+.ssc-spinner__orbit {
+	position: relative;
+	width: 14rem;
+	height: 14rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ssc-spinner--compacto {
+	gap: 14px;
+	padding: 12px;
+}
+
+.ssc-spinner--compacto .ssc-spinner__orbit {
+	width: 5.5rem;
+	height: 5.5rem;
+}
+
+/* Presentación común para todas las esperas que bloquean una vista. */
+.ssc-spinner--pantalla {
+	position: fixed;
+	inset: 0;
+	z-index: 100;
+	margin: 0;
+	padding: 32px;
+	background: rgb(16 22 34 / 92%);
+	backdrop-filter: blur(4px);
+}
+
+.ssc-spinner__svg {
+	width: 100%;
+	height: 100%;
+}
+
+.ssc-spinner__radar {
+	transform-origin: center;
+	animation: ssc-spinner-radar 2.2s ease-out infinite;
+}
+
+.ssc-spinner__track {
+	stroke: rgba(255, 255, 255, 0.08);
+}
+
+.ssc-spinner__arc {
+	transform-origin: center;
+	animation: ssc-spinner-arc 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.ssc-spinner__core {
+	transform-origin: center;
+	animation: ssc-spinner-breathe 2.4s ease-in-out infinite;
+}
+
+.ssc-spinner__pin {
+	transform-origin: center;
+	animation: ssc-spinner-float 2.4s ease-in-out infinite;
+}
+
+.ssc-spinner__message {
+	margin: 0;
+	max-width: 22rem;
+	font-size: 0.9rem;
+	color: var(--muted);
+	animation: ssc-spinner-blink 1.8s ease-in-out infinite;
+}
+
+@keyframes ssc-spinner-arc {
+	0% {
+		transform: rotate(0deg);
+		stroke-dasharray: 45 230;
+		stroke-dashoffset: 0;
+	}
+
+	50% {
+		transform: rotate(180deg);
+		stroke-dasharray: 180 230;
+		stroke-dashoffset: -50;
+	}
+
+	100% {
+		transform: rotate(360deg);
+		stroke-dasharray: 45 230;
+		stroke-dashoffset: -230;
+	}
+}
+
+@keyframes ssc-spinner-radar {
+	0% {
+		transform: scale(0.85);
+		opacity: 0.8;
+	}
+
+	50% {
+		opacity: 0.3;
+	}
+
+	100% {
+		transform: scale(1.3);
+		opacity: 0;
+	}
+}
+
+@keyframes ssc-spinner-breathe {
+	0%, 100% {
+		transform: scale(1);
+		filter: drop-shadow(0 10px 25px rgba(37, 99, 235, 0.45));
+	}
+
+	50% {
+		transform: scale(1.04);
+		filter: drop-shadow(0 14px 32px rgba(59, 130, 246, 0.65));
+	}
+}
+
+@keyframes ssc-spinner-float {
+	0%, 100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-4px);
+	}
+}
+
+@keyframes ssc-spinner-blink {
+	0%, 100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.45;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ssc-spinner__radar,
+	.ssc-spinner__arc,
+	.ssc-spinner__core,
+	.ssc-spinner__pin,
+	.ssc-spinner__message {
+		animation: none;
+	}
+}

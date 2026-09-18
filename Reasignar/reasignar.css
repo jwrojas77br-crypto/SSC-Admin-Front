@@ -1,0 +1,119 @@
+body { margin: 0; background: #101622; }
+.ssc-reasignar, .ssc-reasignar * { box-sizing: border-box; }
+.ssc-reasignar {
+    display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh;
+    color: #f1f5f9; font-family: "Segoe UI", sans-serif; --muted: #94a3b8;
+}
+.ssc-reasignar__header {
+    position: sticky; top: 0; z-index: 10; border-bottom: 1px solid #1e293b;
+    background: rgb(16 22 34 / 95%); backdrop-filter: blur(12px);
+}
+.ssc-reasignar__header-content, .ssc-reasignar__content {
+    width: 100%; max-width: 448px; margin-inline: auto;
+}
+.ssc-reasignar__header-content {
+    display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; gap: 8px; padding: 12px 16px;
+}
+.ssc-reasignar__header h1 { margin: 0; font-size: 19px; text-align: center; }
+.ssc-reasignar__back, .ssc-reasignar__refresh {
+    display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
+    border: 0; border-radius: 50%; background: transparent; color: #f1f5f9;
+    font: inherit; font-size: 27px; text-decoration: none; cursor: pointer;
+}
+.ssc-reasignar__refresh { color: #6ea0ff; }
+.ssc-reasignar__back:hover, .ssc-reasignar__refresh:hover { background: #1e293b; }
+.ssc-reasignar__refresh:disabled { opacity: 0.5; cursor: default; }
+.ssc-reasignar__content { flex: 1; padding: 24px 16px 120px; }
+#reasignarStatus, #reasignarListaStatus {
+    margin: 0 0 18px; color: #94a3b8; font-size: 13px; line-height: 1.5;
+}
+#reasignarStatus:empty, #reasignarListaStatus:empty { display: none; }
+.ssc-reasignar__section { margin-bottom: 26px; }
+.ssc-reasignar__section > label, .ssc-reasignar__heading h2 {
+    display: block; margin: 0 0 10px; color: #93c5fd; font-size: 14px;
+    font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.ssc-reasignar select, .ssc-reasignar textarea, #reasignarBuscar {
+    width: 100%; min-height: 52px; padding: 12px 16px; border: 1px solid #334155;
+    border-radius: 16px; background: #0f172a; color: #f1f5f9; font: inherit; font-size: 16px;
+}
+.ssc-reasignar textarea { resize: vertical; }
+.ssc-reasignar select:focus-visible, .ssc-reasignar textarea:focus-visible,
+#reasignarBuscar:focus-visible { outline: 2px solid #135bec; outline-offset: 2px; }
+.ssc-reasignar__heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.ssc-reasignar__heading h2 { margin-bottom: 12px; }
+#reasignarCantidad { color: #6ea0ff; font-size: 13px; }
+#reasignarBuscar { margin-bottom: 16px; }
+#reasignarLista { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.ssc-reasignar__card {
+    display: grid; gap: 12px; padding: 16px;
+    border: 1px solid #1e293b; border-radius: 22px; background: #0f172a; cursor: pointer;
+}
+.ssc-reasignar__card:has(.ssc-reasignar__checkbox:checked) {
+    border-color: #f59e0b; background: #33250f; box-shadow: 0 0 0 2px #f59e0b;
+}
+.ssc-reasignar__card-info { display: grid; flex: 1; min-width: 0; gap: 5px; }
+.ssc-reasignar__card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 6px 10px;
+}
+.ssc-reasignar__card-title { font-size: 16px; }
+.ssc-reasignar__card-territory { color: #93c5fd; font-size: 14px; }
+.ssc-reasignar__card-status {
+    flex-shrink: 0; width: fit-content; padding: 3px 8px; border-radius: 999px;
+    background: #422006; color: #fbbf24; font-size: 12px; font-weight: 700;
+}
+.ssc-reasignar__card-status[data-estatus="asignada"] {
+    background: #3f1d25; color: #fda4af;
+}
+.ssc-reasignar__card-meta { color: #94a3b8; font-size: 13px; }
+.ssc-reasignar__card-warning {
+    color: #fdba74; font-size: 12px; line-height: 1.35;
+}
+.ssc-reasignar__checkbox { width: 24px; height: 24px; accent-color: #f59e0b; }
+.ssc-reasignar__delivery {
+    display: flex; gap: 8px; margin: 0; padding: 10px 0 0;
+    border: 0; border-top: 1px solid #4b3514;
+}
+.ssc-reasignar__delivery[hidden] { display: none; }
+.ssc-reasignar__delivery legend {
+    width: 100%; margin-bottom: 8px; padding: 0; color: #fdba74;
+    font-size: 12px; font-weight: 600; text-transform: uppercase;
+}
+.ssc-reasignar__delivery label {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    flex: 1; min-height: 40px; padding: 8px; border: 1px solid #4b5563;
+    border-radius: 12px; background: #0f172a; cursor: pointer;
+}
+.ssc-reasignar__delivery label:has(input:checked) {
+    border-color: #f59e0b; background: #422006; color: #fff;
+}
+.ssc-reasignar__delivery label:has(input:disabled) { opacity: 0.4; cursor: default; }
+.ssc-reasignar__delivery-option { accent-color: #f59e0b; }
+.ssc-reasignar__footer {
+    position: fixed; right: 0; bottom: 0; left: 0; z-index: 10;
+    padding: 16px max(16px, calc((100% - 416px) / 2));
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    border-top: 1px solid #1e293b; background: rgb(16 22 34 / 95%); backdrop-filter: blur(12px);
+}
+#reasignarConfirmar {
+    width: 100%; min-height: 56px; padding: 12px; border: 0; border-radius: 20px;
+    background: #d97706; color: #fff; font: inherit; font-weight: 700; cursor: pointer;
+}
+#reasignarConfirmar:disabled { opacity: 0.55; cursor: default; }
+#reasignarStatus[data-estado="correcto"] {
+    position: fixed; inset: 0; z-index: 110; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px; margin: 0; padding: 32px;
+    background: rgb(16 22 34 / 96%); color: #4ade80; font-size: 16px;
+    font-weight: 700; text-align: center;
+}
+#reasignarStatus[data-estado="correcto"]::before {
+    content: "✓"; display: grid; place-items: center; width: 64px; height: 64px;
+    border: 2px solid #4ade80; border-radius: 50%; font-size: 34px;
+}
+#reasignarStatus[data-estado="error"] {
+    position: fixed; right: 16px; bottom: 112px; left: 16px; z-index: 110;
+    max-width: 416px; margin: 0 auto; padding: 14px 16px; border: 1px solid #ef4444;
+    border-radius: 14px; background: #2a151b; color: #f87171;
+}
+.ssc-reasignar__card-main { display: flex; align-items: center; gap: 16px; cursor: pointer; }

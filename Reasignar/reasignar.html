@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reasignar tarjetas | SSC</title>
+    <link rel="stylesheet" href="../Shared/spinner.css">
+    <link rel="stylesheet" href="reasignar.css">
+</head>
+<body>
+    <div class="ssc-reasignar">
+        <header class="ssc-reasignar__header">
+            <div class="ssc-reasignar__header-content">
+                <a class="ssc-reasignar__back" href="../home/home.html" aria-label="Volver a Inicio">←</a>
+                <h1>Reasignar Tarjetas</h1>
+                <button id="reasignarActualizar" class="ssc-reasignar__refresh" type="button"
+                    aria-label="Actualizar asignaciones pendientes" title="Actualizar" disabled>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 6v5h-5"></path>
+                        <path d="M4 18v-5h5"></path>
+                        <path d="M6.1 9a7 7 0 0 1 11.8-2.6L20 11"></path>
+                        <path d="m4 13 2.1 4.6A7 7 0 0 0 17.9 15"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="ssc-reasignar__content">
+            <div id="reasignarStatus" role="status" aria-live="polite">Preparando reasignaciones…</div>
+
+            <div id="reasignarControles" hidden>
+                <section class="ssc-reasignar__section">
+                    <label for="reasignarConductor">Nuevo conductor</label>
+                    <select id="reasignarConductor" disabled>
+                        <option value="">Seleccionar conductor…</option>
+                    </select>
+                </section>
+
+                <section class="ssc-reasignar__section">
+                    <label for="reasignarMotivo">Motivo</label>
+                    <select id="reasignarMotivo" disabled>
+                        <option value="">Seleccionar motivo…</option>
+                    </select>
+                </section>
+
+                <section id="reasignarObservacionGroup" class="ssc-reasignar__section" hidden>
+                    <label for="reasignarObservacion">Observación</label>
+                    <textarea id="reasignarObservacion" rows="3"
+                        placeholder="Describe el motivo de la reasignación"></textarea>
+                </section>
+
+                <section class="ssc-reasignar__section" aria-labelledby="reasignarListaTitulo">
+                    <div class="ssc-reasignar__heading">
+                        <h2 id="reasignarListaTitulo">Tarjetas para reasignar</h2>
+                        <span id="reasignarCantidad"></span>
+                    </div>
+                    <input id="reasignarBuscar" type="search" placeholder="Buscar tarjeta, territorio o conductor"
+                        autocomplete="off">
+                    <p id="reasignarListaStatus"></p>
+                    <ul id="reasignarLista"></ul>
+                </section>
+            </div>
+        </main>
+
+        <footer class="ssc-reasignar__footer">
+            <button id="reasignarConfirmar" type="button" disabled>Reasignar tarjetas</button>
+        </footer>
+
+        <template id="reasignarTarjetaTemplate">
+            <li>
+                <div class="ssc-reasignar__card">
+                    <label class="ssc-reasignar__card-main">
+                        <span class="ssc-reasignar__card-info">
+                            <span class="ssc-reasignar__card-header">
+                                <strong class="ssc-reasignar__card-title"></strong>
+                                <span class="ssc-reasignar__card-status"></span>
+                            </span>
+                            <span class="ssc-reasignar__card-territory"></span>
+                            <span class="ssc-reasignar__card-meta"></span>
+                            <span class="ssc-reasignar__card-warning" hidden></span>
+                        </span>
+                        <input class="ssc-reasignar__checkbox" type="checkbox">
+                    </label>
+                    <fieldset class="ssc-reasignar__delivery" hidden>
+                        <legend>Nueva entrega al conductor</legend>
+                        <label>
+                            <input class="ssc-reasignar__delivery-option" type="radio" value="Digital">
+                            Digital
+                        </label>
+                        <label>
+                            <input class="ssc-reasignar__delivery-option" type="radio" value="Física">
+                            Física
+                        </label>
+                    </fieldset>
+                </div>
+            </li>
+        </template>
+    </div>
+    <script type="module" src="reasignar.controller.js"></script>
+</body>
+</html>

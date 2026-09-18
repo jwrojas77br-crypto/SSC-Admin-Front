@@ -45,6 +45,20 @@ import {
 
 let pasoActual = "correo";
 
+function mostrarDestinoAutenticado(usuario) {
+  const parametros = new URLSearchParams(window.location.search);
+
+  if (parametros.get("configuracion") === "authenticator") {
+    mostrarLoginExitoso(usuario);
+    inicializarAuthenticator(usuario);
+    return;
+  }
+
+  window.location.replace(
+    new URL("../home/home.html", import.meta.url).href
+  );
+}
+
 function manejarCambioCorreo() {
   const correoVacio =
     obtenerCorreo() === "";
@@ -206,15 +220,7 @@ async function inicializarLogin() {
 
   if (resultado.valida) {
     pasoActual = "autenticado";
-
-    mostrarLoginExitoso(
-      resultado.usuario
-    );
-
-    inicializarAuthenticator(
-      resultado.usuario
-    );
-
+    mostrarDestinoAutenticado(resultado.usuario);
     return;
   }
 
@@ -250,14 +256,7 @@ function completarAutenticacion(resultado) {
   );
 
   pasoActual = "autenticado";
-
-  mostrarLoginExitoso(
-    resultado.usuario
-  );
-
-  inicializarAuthenticator(
-    resultado.usuario
-  );
+  mostrarDestinoAutenticado(resultado.usuario);
 }
 
 async function procesarLoginTotp() {

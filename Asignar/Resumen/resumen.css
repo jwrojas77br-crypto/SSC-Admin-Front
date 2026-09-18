@@ -1,0 +1,298 @@
+/* Base visual de la vista de confirmación. */
+body {
+    margin: 0;
+    background: #101622;
+}
+
+.ssc-resumen,
+.ssc-resumen * {
+    box-sizing: border-box;
+}
+
+.ssc-resumen {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    color: #f1f5f9;
+    font-family: "Segoe UI", sans-serif;
+    --muted: #94a3b8;
+}
+
+/* Mantiene la navegación visible durante el desplazamiento. */
+.ssc-resumen__header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid #1e293b;
+    background: rgb(16 22 34 / 95%);
+    backdrop-filter: blur(12px);
+}
+
+.ssc-resumen__header-content {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 448px;
+    margin-inline: auto;
+    padding: 12px 16px;
+}
+
+.ssc-resumen__header h1 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+/* Botón de regreso con área suficiente para pantallas táctiles. */
+.ssc-resumen__back {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #f1f5f9;
+    font: inherit;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.ssc-resumen__back:hover {
+    background: #1e293b;
+}
+
+.ssc-resumen__back:focus-visible {
+    outline: 3px solid #f1f5f9;
+    outline-offset: 2px;
+}
+
+/* Centra el contenido y separa sus secciones. */
+.ssc-resumen__content {
+    flex: 1;
+    width: 100%;
+    max-width: 448px;
+    margin-inline: auto;
+    padding: 24px 16px;
+}
+
+.ssc-resumen__content section {
+    margin-bottom: 32px;
+}
+
+#resumenStatus {
+    margin: 0 0 24px;
+    color: #94a3b8;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+#resumenStatus[data-estado="correcto"] {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 0;
+    padding: 32px;
+    background: rgb(16 22 34 / 96%);
+    color: #4ade80;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#resumenStatus[data-estado="correcto"]::before {
+    content: "✓";
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border: 2px solid #4ade80;
+    border-radius: 50%;
+    font-size: 34px;
+}
+
+#resumenStatus[data-estado="error"] {
+    position: fixed;
+    right: 16px;
+    bottom: 112px;
+    left: 16px;
+    z-index: 30;
+    max-width: 416px;
+    margin: 0 auto;
+    padding: 14px 16px;
+    border: 1px solid #ef4444;
+    border-radius: 14px;
+    background: #2a151b;
+    color: #f87171;
+    box-shadow: 0 12px 30px rgb(0 0 0 / 35%);
+}
+
+.ssc-resumen__content h2 {
+    margin: 0 0 12px;
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Presenta el conductor como una tarjeta independiente. */
+#resumenConductor {
+    margin: 0;
+    padding: 18px;
+    border: 1px solid #1e293b;
+    border-radius: 24px;
+    background: #0f172a;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.ssc-resumen__territory-title {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.ssc-resumen__territory-count {
+    margin: 4px 0 14px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+#resumenGrupos {
+    display: grid;
+    gap: 28px;
+}
+
+.ssc-resumen__territory-group {
+    margin: 0 !important;
+}
+
+.ssc-resumen__cards {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Mantiene las acciones disponibles en la parte inferior. */
+.ssc-resumen__footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 12px;
+    width: 100%;
+    padding: 16px max(16px, calc((100% - 416px) / 2));
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    border-top: 1px solid #1e293b;
+    background: rgb(16 22 34 / 95%);
+    backdrop-filter: blur(12px);
+}
+
+.ssc-resumen__footer button {
+    min-height: 56px;
+    padding: 12px;
+    border-radius: 20px;
+    font: inherit;
+    font-weight: 700;
+}
+
+#resumenAgregar {
+    border: 1px solid #135bec;
+    background: transparent;
+    color: #6ea0ff;
+    cursor: pointer;
+}
+
+#resumenAgregar:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+#resumenConfirmar {
+    border: 0;
+    background: #135bec;
+    color: #fff;
+}
+
+#resumenConfirmar:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+/* Elimina el espacio del aviso cuando el resumen está completo. */
+#resumenStatus:empty {
+    display: none;
+}
+
+/* Presenta cada tarjeta incluida en la asignación pendiente. */
+.ssc-resumen__card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid #1e293b;
+    border-radius: 24px;
+    background: #0f172a;
+}
+
+.ssc-resumen__card-info {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+    gap: 6px;
+    overflow-wrap: anywhere;
+}
+
+.ssc-resumen__card-info strong {
+    font-size: 16px;
+}
+
+.ssc-resumen__card-meta {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.ssc-resumen__card-delivery {
+    width: fit-content;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #172554;
+    color: #93c5fd;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ssc-resumen__card-check {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgb(19 91 236 / 15%);
+    color: #6ea0ff;
+    font-weight: 700;
+}
+
+/* Apila las acciones si el ancho resulta demasiado reducido. */
+@media (max-width: 359px) {
+    .ssc-resumen__footer {
+        grid-template-columns: 1fr;
+    }
+}
+

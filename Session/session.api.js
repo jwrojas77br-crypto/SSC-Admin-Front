@@ -7,6 +7,7 @@ export function validarSesionEnBackend(token) {
     "/api/auth/validate-session",
     {
       token: token
-    }
+    },
+    { reintentos: 1 }
   );
 }

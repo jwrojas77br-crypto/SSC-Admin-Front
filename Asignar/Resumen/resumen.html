@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resumen de asignación | SSC</title>
+    <link rel="stylesheet" href="../../Shared/spinner.css">
+    <!-- Estilos exclusivos del resumen de asignación. -->
+    <link rel="stylesheet" href="resumen.css">
+</head>
+
+<body>
+    <!-- Contenedor principal de la confirmación de asignación. -->
+    <div class="ssc-resumen">
+
+        <!-- Permite regresar al detalle para modificar la selección. -->
+        <header class="ssc-resumen__header">
+            <div class="ssc-resumen__header-content">
+                <button id="resumenBack" type="button" class="ssc-resumen__back" aria-label="Volver al detalle">
+                    ←
+                </button>
+
+                <h1>Resumen de Asignación</h1>
+            </div>
+        </header>
+
+        <main class="ssc-resumen__content">
+            <!-- Comunica si falta la selección o se está procesando. -->
+            <div id="resumenStatus" role="status" aria-live="polite">
+                Preparando resumen…
+            </div>
+
+            <!-- El controlador mostrará el conductor seleccionado. -->
+            <section aria-labelledby="resumenConductorTitulo">
+                <h2 id="resumenConductorTitulo">
+                    Conductor seleccionado
+                </h2>
+
+                <p id="resumenConductor">—</p>
+            </section>
+
+            <!-- El controlador mostrará el territorio y sus tarjetas. -->
+            <section aria-labelledby="resumenTarjetasTitulo">
+                <h2 id="resumenTarjetasTitulo">
+                    Tarjetas asignadas
+                </h2>
+
+                <!-- Cada territorio tendrá su propio título y lista de tarjetas. -->
+                <div id="resumenGrupos"></div>
+            </section>
+        </main>
+
+        <!-- Permite modificar o confirmar definitivamente la selección. -->
+        <footer class="ssc-resumen__footer">
+            <button id="resumenAgregar" type="button">
+                Agregar
+            </button>
+
+            <button id="resumenConfirmar" type="button" disabled>
+                Confirmar asignación
+            </button>
+        </footer>
+
+    </div>
+
+    <!-- Recupera y presenta la selección creada en Detalle. -->
+    <script type="module" src="resumen.controller.js"></script>
+</body>
+
+</html>

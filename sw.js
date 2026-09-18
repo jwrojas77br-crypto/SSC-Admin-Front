@@ -1,5 +1,5 @@
 // Producción: versión de caché fija para probar actualizaciones
-const CACHE = "ssc-admin-v23";
+const CACHE = "ssc-admin-v39";
 
 self.addEventListener("install", e => {
 	// Permite que el SW nuevo tome control sin esperar al viejo
@@ -25,6 +25,7 @@ self.addEventListener("install", e => {
 				"./Session/session.storage.js",
 				"./Session/session.api.js",
 				"./Session/session.service.js",
+				"./Shared/data.cache.js",
 
 				"./Authenticator/authenticator.api.js",
 				"./Authenticator/authenticator.service.js",
@@ -64,6 +65,11 @@ self.addEventListener("activate", e => {
 // Cache-first para assets; fallback a index.html en navegaciones offline
 self.addEventListener("fetch", e => {
 	const req = e.request;
+	// Las consultas y escrituras del API siempre deben llegar a la red.
+	if (req.method !== "GET") {
+		e.respondWith(fetch(req));
+		return;
+	}
 	// Si es navegación (HTML), intenta red y si falla, sirve el index
 	if (req.mode === "navigate") {
 		e.respondWith(
